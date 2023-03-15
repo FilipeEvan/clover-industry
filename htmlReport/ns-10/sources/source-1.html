@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Photo</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.jacto.cloverindustry.model.photo</a>
+</div>
+
+<h1>Coverage Summary for Class: Photo (br.com.jacto.cloverindustry.model.photo)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Photo</td>
+<td class="coverageStat">
+  <span class="percent">
+    41,7%
+  </span>
+  <span class="absValue">
+    (5/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    41,7%
+  </span>
+  <span class="absValue">
+    (5/12)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$91MjAIjL</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$a4cGDWPv</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$e5ZJLewW</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$GDmrBtyG</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$gHh2QoOU</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$HibernateProxy$GN2Ntd6b</td>
+  </tr>
+  <tr>
+    <td class="name">Photo$PhotoBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    38,5%
+  </span>
+  <span class="absValue">
+    (5/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38,5%
+  </span>
+  <span class="absValue">
+    (5/13)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.jacto.cloverindustry.model.photo;
+&nbsp;
+&nbsp;
+&nbsp;import br.com.jacto.cloverindustry.model.product.Product;
+&nbsp;import com.fasterxml.jackson.annotation.JsonIgnore;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.*;
+&nbsp;
+&nbsp;import java.io.Serializable;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Entity(name = &quot;Photo&quot;)
+&nbsp;@Table(name = &quot;photos&quot;)
+<b class="fc">&nbsp;@Data</b>
+<b class="nc">&nbsp;@AllArgsConstructor</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+<b class="nc">&nbsp;@Builder</b>
+&nbsp;public class Photo implements Serializable {
+&nbsp;    private static final long serialVersionUID = 1L;
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<b class="fc">&nbsp;    private UUID id;</b>
+&nbsp;
+<b class="fc">&nbsp;    private  String filename;</b>
+&nbsp;
+<b class="nc">&nbsp;    private String type;</b>
+&nbsp;
+<b class="nc">&nbsp;    private LocalDateTime created_at;</b>
+&nbsp;
+&nbsp;    @Lob
+&nbsp;    @Column(name = &quot;photo&quot;, length = 1000)
+&nbsp;    public byte[] photo() {
+<b class="nc">&nbsp;        return this.photo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @JsonIgnore
+<b class="nc">&nbsp;    private byte[] photo;</b>
+&nbsp;
+&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+&nbsp;    @JoinColumn(name = &quot;product_id&quot;)
+<b class="fc">&nbsp;    private Product product;</b>
+&nbsp;
+<b class="nc">&nbsp;    public Photo(UUID id, String filename, String type, LocalDateTime created_at) {</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-15 18:58</div>
+</div>
+</body>
+</html>

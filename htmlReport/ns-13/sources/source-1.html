@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ClientService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">br.com.jacto.cloverindustry.service.client</a>
+</div>
+
+<h1>Coverage Summary for Class: ClientService (br.com.jacto.cloverindustry.service.client)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientService</td>
+<td class="coverageStat">
+  <span class="percent">
+    33,3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ClientService$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">ClientService$MockitoMock$Un3tfYdT</td>
+  </tr>
+  <tr>
+    <td class="name">ClientService$MockitoMock$Un3tfYdT$auxiliary$g07dnVyp</td>
+  </tr>
+  <tr>
+    <td class="name">ClientService$MockitoMock$Un3tfYdT$auxiliary$Oj1nQ7TY</td>
+  </tr>
+  <tr>
+    <td class="name">ClientService$MockitoMock$Un3tfYdT$auxiliary$tK9LaXAD</td>
+  </tr>
+  <tr>
+    <td class="name">ClientService$MockitoMock$Un3tfYdT$auxiliary$usB7sx9J</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    33,3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package br.com.jacto.cloverindustry.service.client;
+&nbsp;
+&nbsp;import br.com.jacto.cloverindustry.ValidationException;
+&nbsp;import br.com.jacto.cloverindustry.dto.client.ClientResponseDto;
+&nbsp;import br.com.jacto.cloverindustry.model.client.Client;
+&nbsp;import br.com.jacto.cloverindustry.model.proposal.Proposal;
+&nbsp;import br.com.jacto.cloverindustry.repository.client.ClientRepository;
+&nbsp;import br.com.jacto.cloverindustry.repository.proposal.ProposalRepository;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.data.domain.Page;
+&nbsp;import org.springframework.data.domain.Pageable;
+&nbsp;import org.springframework.data.web.PageableDefault;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class ClientService {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private ClientRepository clientRepository;
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private ProposalRepository proposalRepository;
+&nbsp;
+&nbsp;    public Page&lt;ClientResponseDto&gt; getAllClients(@PageableDefault(page = 0, size = 10, sort = {&quot;name&quot;}) Pageable pageable) {
+<b class="nc">&nbsp;        var page = clientRepository.findAll(pageable).map(ClientResponseDto::new);</b>
+<b class="nc">&nbsp;        return page;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void deleteClientById(UUID id) {
+&nbsp;        // Busca o cliente correspondente pelo ID
+<b class="nc">&nbsp;        Client client = clientRepository.findById(id)</b>
+<b class="nc">&nbsp;                .orElseThrow(() -&gt; new ValidationException(&quot;Cliente não encontrado&quot;));</b>
+&nbsp;
+&nbsp;        // Busca a proposta associada ao cliente (se houver)
+<b class="nc">&nbsp;        List&lt;Proposal&gt; proposals = proposalRepository.findByClientId(id);</b>
+&nbsp;
+&nbsp;        // Verifica se a proposta existe e adiciona uma mensagem se necessário
+<b class="nc">&nbsp;        if (!proposals.isEmpty()) {</b>
+<b class="nc">&nbsp;            throw new ValidationException(&quot;Não é possível excluir o cliente porque ele tem uma proposta associada.&quot;);</b>
+&nbsp;        }
+&nbsp;        // Exclui as informações de cliente do banco de dados
+<b class="nc">&nbsp;        clientRepository.delete(client);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-15 18:58</div>
+</div>
+</body>
+</html>

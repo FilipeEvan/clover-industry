@@ -35,5 +35,5 @@ O diagrama E/R abaixo mostra a estrutura do banco de dados utilizado pela API:
 
 ## Acesso ao Trello
 
-O projeto está sendo gerenciado através de um quadro no Trello. Para ter acesso ao quadro, [clique aqui](https://trello.com/b/Ut3ohvOS/backend-i).
+O projeto está sendo gerenciado através de um quadro no Trello. Para ter acesso ao quadro, [clique aqui](https://trello.com/b/bOM9ErmT/clover-industry-authorization-api).
 
